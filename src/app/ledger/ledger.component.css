@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: roboto;
+  font-size: 13px;
+  font-weight: 300;
+  transition: all 0.1s ease-in-out;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.main-table-head {
+  background-color: #0f3960;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  th {
+    padding: 8px;
+    text-align: left;
+    font-weight: 300;
+  }
+}
+
+.main-table-head::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(255, 255, 255);
+}
+.main-table-body {
+  td {
+    padding: 8px;
+  }
+}
+.even-row {
+  background-color: #ebebeb;
+}
+
+.odd-row {
+  background-color: #ffffff;
+}
+
+.date,
+.amount,
+.chevron,
+.credit,
+.debit,
+.sealNo {
+  width: 100px;
+}
+
+.chevron {
+  cursor: pointer;
+}
+
+.expandable-row {
+  td {
+    padding: 10px 20px;
+    border-top: #ebebeb solid 1px;
+    border-bottom: #ebebeb solid 1px;
+  }
+}
+
+.expandable-row.expanded {
+  display: table-row;
+}
+
+.expandable-content {
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+::ng-deep .mat-tab-label-content {
+  font-size: 13px;
+  padding: 0;
+}
+
+::ng-deep .mat-tab-label {
+  height: 28px !important;
+}
+
+.right-align {
+  text-align: center !important;
+}
+
+.documents-table {
+  width: auto !important;
+  thead {
+    text-align: left;
+    th {
+      padding: 3px;
+      font-weight: 500;
+    }
+  }
+  td {
+    padding: 3px;
+    border: none;
+  }
+}
+
+.doc-date,
+.doc-label,
+.doc-user,
+.doc-icon,
+.date-from,
+.date-to,
+.repeat {
+  width: 150px;
+}
+
+.delete-icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.btn-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    width: 100px;
+    height: 30px;
+    border: none;
+    background-color: white;
+    color: #0f3960;
+    border: #0f3960 solid 1px;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+}
+
+.main-table-head th:hover img {
+  opacity: 1;
+}
+
+.sort-icon {
+  opacity: 0;
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+  transform: translateY(3px);
+}
+
+.checkbox {
+  width: 20px;
+}
+
+.checkbox-input {
+  transform: translateY(1px);
+}
+
+.selected {
+  background-color: #0f3960;
+  color: white;
+}

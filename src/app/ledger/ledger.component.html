@@ -1,0 +1,225 @@
+<table
+  class="main-table"
+  (contextmenu)="onContextMenu($event)"
+  (click)="onClick($event)"
+  (scroll)="onClick($event)"
+>
+  <thead class="main-table-head">
+    <tr>
+      <th class="checkbox">
+        <input
+          (change)="onMainCheckboxChange($event)"
+          class="checkbox-input"
+          type="checkbox"
+          name=""
+          id=""
+        />
+      </th>
+      <th class="date">
+        Date
+        <img
+          (click)="sortbyDate()"
+          class="sort-icon"
+          src="../assets/icons8-sort-17.png"
+          alt=""
+        />
+      </th>
+      <th class="sealNo">
+        Seal No
+        <img
+          (click)="sortbySealNo()"
+          class="sort-icon"
+          src="../assets/icons8-sort-17.png"
+          alt=""
+        />
+      </th>
+      <th class="label">
+        Label
+        <img class="sort-icon" src="../assets/icons8-sort-17.png" alt="" />
+      </th>
+      <th class="debit right-align">
+        Debit
+        <img class="sort-icon" src="../assets/icons8-sort-17.png" alt="" />
+      </th>
+      <th class="credit right-align">
+        Credit
+        <img class="sort-icon" src="../assets/icons8-sort-17.png" alt="" />
+      </th>
+      <th class="amount right-align">
+        Amount
+        <img class="sort-icon" src="../assets/icons8-sort-17.png" alt="" />
+      </th>
+      <th class="chevron"></th>
+    </tr>
+  </thead>
+  <tbody class="main-table-body">
+    <ng-container *ngFor="let entry of data; let i = index">
+      <ng-container *ngFor="let doc of entry.docs; let j = index">
+        <tr
+          class="main-table-row"
+          [ngClass]="{
+            'even-row': i % 2 === 0,
+            'odd-row': i % 2 !== 0,
+            selected: selectedRows.includes(i + '-' + j)
+          }"
+          [id]="i + '-' + j"
+        >
+          <td class="checkbox">
+            <input
+              *ngIf="j == 0"
+              (change)="onCheckboxChange($event, i, j)"
+              class="checkbox-input"
+              type="checkbox"
+              name=""
+              id=""
+              #checkbox
+            />
+          </td>
+          <td>{{ j == 0 ? entry.date : "" }}</td>
+          <td class="">{{ j == 0 ? entry.sealNumber : "" }}</td>
+          <td>{{ doc.label }}</td>
+          <td class="right-align">{{ doc.debit }}</td>
+          <td class="right-align">{{ doc.credit }}</td>
+          <td class="right-align">{{ doc.amount }}</td>
+          <td>
+            <svg
+              #chevron
+              *ngIf="j == 0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-chevron-down chevron"
+              viewBox="0 0 16 16"
+              (click)="toggleRow(i, chevron)"
+            >
+              <path
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 1 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+          </td>
+        </tr>
+      </ng-container>
+      <tr *ngIf="expandedRows[i]" class="expandable-row">
+        <td colspan="7">
+          <mat-tab-group mat-align-tabs="start">
+            <mat-tab label="Documents">
+              <table class="documents-table">
+                <thead>
+                  <tr>
+                    <th class="doc-date">Date</th>
+                    <th class="doc-user">User</th>
+                    <th class="doc-label">Label</th>
+                    <th class="doc-icon"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container
+                    *ngFor="let doc of entry.documents; let j = index"
+                  >
+                    <tr>
+                      <td>{{ doc.date }}</td>
+                      <td>{{ doc.user }}</td>
+                      <td>{{ doc.label }}</td>
+                      <td>
+                        <img
+                          (click)="deleteDocument(i, j)"
+                          class="delete-icon"
+                          src="../assets/icons8-poubelle-24.png"
+                          alt=""
+                        />
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+              <div class="btn-container">
+                <button (click)="fileInput.click()">Ajouter</button>
+                <input
+                  type="file"
+                  #fileInput
+                  style="display: none"
+                  (change)="onFileSelected($event, i)"
+                />
+              </div>
+            </mat-tab>
+            <mat-tab label="Ventilation">
+              <table class="documents-table">
+                <thead>
+                  <tr>
+                    <th class="date-from">Date From</th>
+                    <th class="date-to">Date To</th>
+                    <th class="repeat"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let vent of entry.ventilation">
+                    <tr>
+                      <td>{{ vent.dateFrom }}</td>
+                      <td>{{ vent.dateTo }}</td>
+                      <td>{{ "Every " + vent.repeat + " Month" }}</td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </mat-tab>
+          </mat-tab-group>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+<div
+  class="context-menu"
+  [matMenuTriggerFor]="animals"
+  id="context-menu"
+  style="display: 'none'"
+>
+  <mat-menu #animals="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+    <button mat-menu-item [matMenuTriggerFor]="invertebrates">
+      Invertebrates
+    </button>
+  </mat-menu>
+
+  <mat-menu #vertebrates="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+    <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+    <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+    <button mat-menu-item>Birds</button>
+    <button mat-menu-item>Mammals</button>
+  </mat-menu>
+
+  <mat-menu #invertebrates="matMenu">
+    <button mat-menu-item>Insects</button>
+    <button mat-menu-item>Molluscs</button>
+    <button mat-menu-item>Crustaceans</button>
+    <button mat-menu-item>Corals</button>
+    <button mat-menu-item>Arachnids</button>
+    <button mat-menu-item>Velvet worms</button>
+    <button mat-menu-item>Horseshoe crabs</button>
+  </mat-menu>
+
+  <mat-menu #fish="matMenu">
+    <button mat-menu-item>Baikal oilfish</button>
+    <button mat-menu-item>Bala shark</button>
+    <button mat-menu-item>Ballan wrasse</button>
+    <button mat-menu-item>Bamboo shark</button>
+    <button mat-menu-item>Banded killifish</button>
+  </mat-menu>
+
+  <mat-menu #amphibians="matMenu">
+    <button mat-menu-item>Sonoran desert toad</button>
+    <button mat-menu-item>Western toad</button>
+    <button mat-menu-item>Arroyo toad</button>
+    <button mat-menu-item>Yosemite toad</button>
+  </mat-menu>
+
+  <mat-menu #reptiles="matMenu">
+    <button mat-menu-item>Banded Day Gecko</button>
+    <button mat-menu-item>Banded Gila Monster</button>
+    <button mat-menu-item>Black Tree Monitor</button>
+    <button mat-menu-item>Blue Spiny Lizard</button>
+    <button mat-menu-item disabled>Velociraptor</button>
+  </mat-menu>
+</div>
