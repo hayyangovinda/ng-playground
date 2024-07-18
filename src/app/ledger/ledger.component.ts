@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { MockdataService } from '../mockdata.service';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { DataSharingService } from '../services/data-sharing.service';
 
 @Component({
   selector: 'ark-ledger',
@@ -34,10 +35,9 @@ export class LedgerComponent {
   selectedRows: any = [];
   constructor(
     private mockdataService: MockdataService,
-    private renderer: Renderer2
-  ) {
-    window.addEventListener('scroll', this.onClick);
-  }
+    private renderer: Renderer2,
+    private dataSharingService: DataSharingService
+  ) {}
 
   toggleRow(index: number, chevron: any): void {
     console.log('clicked');
@@ -146,25 +146,6 @@ export class LedgerComponent {
 
   onContextMenu(event: any) {
     event.preventDefault();
-    console.log(event.clientY);
-    const contextMenu: any = document.getElementById('context-menu');
-    if (contextMenu.style.display === 'block') {
-      contextMenu.style.display = 'none';
-      contextMenu.click();
-
-      return;
-    }
-    contextMenu.click();
-    contextMenu.style.position = 'absolute';
-    contextMenu.style.zIndex = '100';
-
-    contextMenu.style.top = `${event.clientY}px`;
-    contextMenu.style.left = `${event.clientX}px`;
-    contextMenu.style.display = 'block';
-  }
-  onClick(event: any) {
-    console.log(event);
-    const contextMenu: any = document.getElementById('context-menu');
-    contextMenu.style.display = 'none';
+    this.dataSharingService.updateShowOverlay(event);
   }
 }

@@ -7,7 +7,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { LedgerComponent } from './ledger/ledger.component';
 import { LedgerMenuComponent } from './ledger-menu/ledger-menu.component';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [AppComponent, LedgerComponent, LedgerMenuComponent],
   imports: [
@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
     BrowserAnimationsModule,
     MatTabsModule,
     MatMenuModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -48,13 +48,15 @@ export class MockdataService {
       sealNumber: 1002,
       docs: [
         {
-          label: 'Label B1',
+          label:
+            'Label B1 lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
           debit: 150.0,
           credit: 100.0,
           amount: 250.0,
         },
         {
-          label: 'Label B2',
+          label:
+            'Label B2 lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
           debit: 300.0,
           credit: 150.0,
           amount: 450.0,
@@ -85,7 +87,8 @@ export class MockdataService {
       sealNumber: 1003,
       docs: [
         {
-          label: 'Label C1',
+          label:
+            'Label C1 lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
           debit: 200.0,
           credit: 80.0,
           amount: 280.0,
@@ -121,13 +124,15 @@ export class MockdataService {
       sealNumber: 1004,
       docs: [
         {
-          label: 'Label D1',
+          label:
+            'Label D1 lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
           debit: 120.0,
           credit: 60.0,
           amount: 180.0,
         },
         {
-          label: 'Label D2',
+          label:
+            'Label D2 lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
           debit: 250.0,
           credit: 120.0,
           amount: 370.0,
@@ -158,7 +163,8 @@ export class MockdataService {
       sealNumber: 1005,
       docs: [
         {
-          label: 'Label E1',
+          label:
+            'Label E1 lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
           debit: 180.0,
           credit: 90.0,
           amount: 270.0,
@@ -194,13 +200,15 @@ export class MockdataService {
       sealNumber: 1006,
       docs: [
         {
-          label: 'Label F1',
+          label:
+            'Label F1 lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
           debit: 160.0,
           credit: 70.0,
           amount: 230.0,
         },
         {
-          label: 'Label F2',
+          label:
+            'Label F2  lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
           debit: 280.0,
           credit: 130.0,
           amount: 410.0,

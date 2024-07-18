@@ -1,0 +1,80 @@
+<div
+  (contextmenu)="onContextMenu($event)"
+  (click)="onClick($event)"
+  *ngIf="showOverlay"
+  class="overlay"
+>
+  <div
+    #contextMenu="matMenuTrigger"
+    class="context-menu"
+    [matMenuTriggerFor]="main"
+    id="context-menu"
+    style="display: 'none'"
+  >
+    <mat-menu #main="matMenu">
+      <button mat-menu-item>
+        <mat-icon>add</mat-icon>
+        <span>New</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>content_copy</mat-icon>
+        <span>Copy</span>
+      </button>
+
+      <button mat-menu-item>
+        <mat-icon>close_fullscreen</mat-icon>
+        <span>Bouclement</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>attach_file</mat-icon>
+        <span>Attach file</span>
+      </button>
+
+      <button mat-menu-item [matMenuTriggerFor]="print">
+        <mat-icon>print</mat-icon>
+        <span>Print</span>
+      </button>
+
+      <button mat-menu-item>
+        <mat-icon>assignment</mat-icon>
+        <span>Export in excel</span>
+      </button>
+
+      <button mat-menu-item>
+        <mat-icon>countertops</mat-icon>
+        <span>Journal caisse</span>
+      </button>
+
+      <button mat-menu-item [matMenuTriggerFor]="error">
+        <mat-icon>sync_problem</mat-icon>
+        <span>Error verification</span>
+      </button>
+    </mat-menu>
+
+    <mat-menu #print="matMenu">
+      <button mat-menu-item>Journal</button>
+    </mat-menu>
+
+    <mat-menu #error="matMenu">
+      <button mat-menu-item>Montants</button>
+      <button mat-menu-item>Comptes manquants</button>
+      <button mat-menu-item [matMenuTriggerFor]="factures">Factures</button>
+    </mat-menu>
+
+    <mat-menu #factures="matMenu">
+      <button mat-menu-item>Erreurs de compta</button>
+      <button mat-menu-item>Comptes par défaut</button>
+      <button mat-menu-item>Date de compta.</button>
+      <button mat-menu-item>Date de paiement</button>
+      <button mat-menu-item>TVA</button>
+    </mat-menu>
+  </div>
+</div>
